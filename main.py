@@ -13,6 +13,7 @@ def calculate_cosine_similarity(v1, v2):
 
 def create_term_doc_matrix(relative_dir, exclude_set, stop_words, min_frequency):
     """ Returns the matrix, the corpus document count and a dictionary holding document word counts. """
+    
     search_dir = os.getcwd() + '/' + relative_dir
     if relative_dir not in os.listdir(os.getcwd()) or not os.path.isdir(search_dir):
         print('Sorry, directory ' + relative_dir + ' not found.')
@@ -26,8 +27,8 @@ def create_term_doc_matrix(relative_dir, exclude_set, stop_words, min_frequency)
         for filename in files:
 
             file_with_path = os.path.join(_dir, filename)
-            text = open(file_with_path, 'r').read().lower().replace('.', ' ')  # Down-casing, removing full-stops.
-            text = ''.join(ch for ch in text if ch not in exclude_set)         # Filtering out punctuation.
+            text = open(file_with_path, 'r').read().lower().replace('.', ' ')                     # Down-casing, removing full-stops.
+            text = ''.join(ch for ch in text if ch not in exclude_set)                            # Filtering out punctuation.
             terms = ' '.join(filter(lambda x: x.lower() not in stop_words, text.split())).split() # Removing the stop-list words.
             num_of_docs += 1
             _document_word_counts[file_with_path] += len(terms)
