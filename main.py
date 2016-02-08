@@ -72,7 +72,7 @@ while True:
             continue
         DIR_RELEVANT_STORAGE[specified_dir] = result
 
-    parent_dictionary, NUM_OF_DOCS, document_word_counts = DIR_RELEVANT_STORAGE[specified_dir]
+    parent_dictionary, num_of_docs, document_word_counts = DIR_RELEVANT_STORAGE[specified_dir]
     print('Searching... ! \n')
     query_vector = []
     idf_dict = {}
@@ -81,7 +81,7 @@ while True:
         term = stem(_term)
         idf = 0.0
         if term in parent_dictionary.keys():
-            idf = 1 + math.log10(NUM_OF_DOCS / float(len(parent_dictionary[term])))
+            idf = 1 + math.log10(num_of_docs / float(len(parent_dictionary[term])))
             considerable_documents += parent_dictionary[term].keys()
         idf_dict[term] = idf
         tf = query.count(term) / float(len(query))
