@@ -69,10 +69,10 @@ print('Please enter queries in the exact specified format and with double quotes
       'If the given relative directory has not been indexed, it will first, preceding the search.')
 
 while True:
-    _input = input('\nEnter a query e.g "Learn life" 20_newsgroup : ').lower()
+    _input = input('\nEnter a query e.g "Learn life" 20_newsgroup : ')
     query = re.findall(r'"([^"]*)"', _input)[0]
     specified_dir = _input.split('"' + query + '"').pop().split()[0]
-    query = [ stem(x) for x in query.split() ]
+    query = [ stem(x) for x in query.lower().split() ]
 
     if specified_dir not in DIR_RELEVANT_STORAGE.keys():
         result = create_term_doc_matrix(specified_dir, EXCLUDED, STOPWORD_LIST, MIN_REQUIRED_FREQUENCY)
